@@ -1,6 +1,6 @@
 # 🎯 Sistema Sergio 2026
 
-Sistema personalizado de mejora personal: Ejercicio, Pomodoros y Sueño.
+Sistema personalizado de mejora personal: Ejercicio, Lectura, Alimentación Sana y Sueño.
 
 ## 🌐 Ver Online
 
@@ -8,41 +8,47 @@ Sistema personalizado de mejora personal: Ejercicio, Pomodoros y Sueño.
 
 ## 📱 Características
 
-- ✅ **Dashboard completo** con 3 métricas clave
-- ✅ **Tracker diario** adaptado al día de la semana
+- ✅ **Dashboard completo** con 4 métricas clave de vida saludable
+- ✅ **Tracker diario** adaptado a hábitos personales
 - ✅ **Histórico semanal** (últimos 7 días)
+- ✅ **Dieta semanal** con 4 opciones por comida
 - ✅ **Auto-guardado** en navegador (LocalStorage)
 - ✅ **Responsive** - Funciona en móvil y ordenador
 - ✅ **Offline** - Sin internet necesario después de cargar
 
-## 🎯 Sistema de 3 Métricas
+## 🎯 Sistema de 4 Métricas
 
 1. **💪 Ejercicio:** 40 min × 3 días/semana (LUN/MIÉ/VIE)
-2. **⚡ Pomodoros:** 12-15 sesiones de 15 min diarias
-3. **😴 Sueño:** 7-8 horas cada noche
+2. **📚 Lectura:** 30+ minutos diarios (cualquier hora)
+3. **🍽️ Alimentación:** 3 comidas equilibradas (desayuno, almuerzo, cena)
+4. **😴 Sueño:** 7-8 horas cada noche
 
 ## 📅 Horarios
 
 ### Lunes a Viernes
-- **07:15** - Rutina matinal (20 min)
-- **09:00-18:30** - Trabajo con Pomodoros
+- **07:15** - Rutina matinal: agua, lectura 15 min, desayuno (20 min)
+- **09:00-18:30** - Trabajo enfocado (sin sistema de Pomodoros)
+- **13:00-14:00** - Almuerzo equilibrado
 - **18:30-19:15** - Ejercicio (LUN/MIÉ/VIE)
+- **19:15-20:00** - Cena saludable
+- **21:00-21:30** - Lectura antes de dormir (20 min)
 - **21:30** - Dormir
 
 ### Sábado y Domingo
 - **Tiempo libre** - Hobbies, viajes, familia
+- **Comidas** - Pueden ser más flexibles/relajadas
 - **Domingo 17:00** - Revisión semanal (15 min)
 
 ## 🗂️ Secciones
 
 - 🚀 Plan Semana 1
 - 😴 Protocolo Sueño
-- ⚡ Sistema Pomodoro 15 min
 - 🏋️ Ejercicio 40 min
 - 🌅 Rutina Matinal 20 min
-- 📊 Tracker 3 Métricas
+- 📊 Tracker Diario (4 Métricas)
+- 🍽️ Dieta Semanal Equilibrada
 - 📋 Revisión Semanal 15 min
-- 📍 Tracker Diario
+- 📍 Dashboard Interactivo
 
 ## 💾 Guardado de Datos
 
