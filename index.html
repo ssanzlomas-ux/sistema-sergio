@@ -3,44 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Sergio - Completo</title>
+    <title>Sistema Sergio 2026 - Mejora Personal</title>
     <style>
-        /* ===== CSS Variables ===== */
         :root {
-            --color-primary: #1d1d1d;
-            --color-secondary: #333;
-            --color-text: #1d1d1d;
-            --color-text-secondary: #666;
-            --color-text-tertiary: #999;
-            --color-bg: #f5f5f7;
-            --color-bg-alt: white;
-            --color-border: #e5e5e7;
-            --color-success: #34c759;
-            --color-success-dark: #30b24f;
-            --color-danger: #ff6b6b;
-            --color-info: #0369a1;
-            --color-info-bg: #f0f9ff;
-            --color-info-border: #bfdbfe;
-            --color-warning: #92400e;
-            --color-warning-bg: #fef3c7;
-            --color-warning-border: #fcd34d;
-            --spacing-xs: 8px;
-            --spacing-sm: 12px;
-            --spacing-md: 16px;
-            --spacing-lg: 20px;
-            --spacing-xl: 25px;
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-size-sm: 12px;
-            --font-size-base: 13px;
-            --font-size-md: 14px;
-            --font-size-lg: 15px;
-            --font-size-xl: 22px;
-            --font-size-2xl: 24px;
-            --font-size-3xl: 28px;
-            --transition: all 0.2s ease;
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --success: #28a745;
+            --danger: #ff6b6b;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --light: #f8f9fa;
+            --border: #e5e5e7;
+            --text: #1d1d1d;
+            --text-secondary: #666;
         }
 
         * {
@@ -49,520 +24,355 @@
             box-sizing: border-box;
         }
 
-        html {
-            font-size: 16px;
-        }
-
         body {
-            font-family: var(--font-family);
-            background: var(--color-bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: var(--spacing-xs);
-            color: var(--color-text);
+            padding: 20px;
+            color: var(--text);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            color: var(--color-text);
-            margin-bottom: var(--spacing-xl);
-            padding: var(--spacing-lg) 0;
+            color: white;
+            margin-bottom: 30px;
         }
 
         header h1 {
-            font-size: var(--font-size-3xl);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
             font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-            letter-spacing: -0.5px;
         }
 
         header p {
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
-            font-weight: 400;
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
         .nav-tabs {
             display: flex;
-            gap: var(--spacing-xs);
+            gap: 10px;
+            margin-bottom: 30px;
             overflow-x: auto;
-            margin-bottom: var(--spacing-xl);
-            padding: 0;
-            background: transparent;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .nav-tabs::-webkit-scrollbar {
-            display: none;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .nav-tab {
-            padding: var(--spacing-xs) 14px;
-            background: var(--color-bg-alt);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 500;
-            color: var(--color-text-secondary);
-            font-size: var(--font-size-base);
-            transition: var(--transition);
+            transition: all 0.3s ease;
             white-space: nowrap;
-            flex-shrink: 0;
         }
 
         .nav-tab:hover {
-            background: var(--color-bg);
-            color: var(--color-text);
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
         }
 
         .nav-tab.active {
-            background: var(--color-primary);
-            color: var(--color-bg-alt);
-            border-color: var(--color-primary);
+            background: white;
+            color: var(--primary);
+            border-color: white;
         }
 
-        .section {
-            background: var(--color-bg-alt);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
+        .tab-content {
             display: none;
-            animation: fadeIn 0.2s ease;
-            border: 1px solid var(--color-border);
         }
 
-        .section.active {
+        .tab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @keyframes slideOut {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(400px); opacity: 0; }
-        }
-
-        h1, h2, h3, h4 {
-            color: var(--color-text);
-            font-weight: 600;
-            margin-bottom: var(--spacing-md);
-        }
-
-        h1 {
-            font-size: var(--font-size-3xl);
-        }
-
-        h2 {
-            font-size: var(--font-size-xl);
-            border-bottom: 1px solid var(--color-border);
-            padding-bottom: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        h3 {
-            font-size: var(--font-size-lg);
-            margin-top: var(--spacing-lg);
-        }
-
-        h4 {
-            font-size: var(--font-size-md);
-        }
-
-        p {
-            line-height: 1.5;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-sm);
-            font-size: var(--font-size-md);
-        }
-
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        li {
-            margin-bottom: var(--spacing-xs);
-            line-height: 1.5;
-            font-size: var(--font-size-md);
-        }
-
-        .metric-grid {
+        .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-xl);
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .metric-card {
-            background: var(--color-bg);
-            color: var(--color-text);
-            padding: 18px;
-            border-radius: var(--radius-lg);
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
             text-align: center;
-            border: 1px solid var(--color-border);
-            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 3px solid var(--light);
         }
 
         .metric-card:hover {
-            border-color: var(--color-primary);
+            transform: translateY(-5px);
         }
 
-        .metric-card .value {
-            font-size: var(--font-size-2xl);
-            font-weight: 700;
-            margin: var(--spacing-xs) 0;
+        .metric-card.completed {
+            background: #d4edda;
+            border-color: var(--success);
         }
 
-        .metric-card > div:first-child {
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
+        .metric-card.pending {
+            background: #fff3cd;
+            border-color: var(--warning);
         }
 
-        .metric-card > div:last-child {
-            font-size: var(--font-size-base);
-            color: var(--color-text-secondary);
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .metric-status {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-block {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .time-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
+            text-align: center;
+            margin-right: 15px;
+        }
+
+        .time-content {
+            flex: 1;
+        }
+
+        .time-label {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .time-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .diet-day {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .diet-day h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .meal {
+            margin-bottom: 15px;
+        }
+
+        .meal-title {
+            font-weight: bold;
+            color: var(--text);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .meal-content {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-left: 15px;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .summary h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.15);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: white;
+            color: var(--primary);
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .checklist {
-            background: var(--color-bg);
-            padding: 0;
-            border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-lg);
-            overflow: hidden;
+            margin-bottom: 20px;
         }
 
         .checklist-item {
             display: flex;
             align-items: center;
-            padding: 14px 16px;
-            background: var(--color-bg-alt);
-            border-bottom: 1px solid var(--color-border);
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: var(--light);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
         }
 
-        .checklist-item:last-child {
-            border-bottom: none;
+        .checklist-item:hover {
+            background: #f0f0f0;
         }
 
-        .checklist-item input[type="checkbox"],
-        .checklist-item input[type="radio"] {
-            margin-right: var(--spacing-sm);
+        .checklist-item.done {
+            background: #d4edda;
+            border-left-color: var(--success);
+        }
+
+        .checklist-item input[type="checkbox"] {
             width: 20px;
             height: 20px;
+            margin-right: 12px;
             cursor: pointer;
-            accent-color: var(--color-primary);
-            border-radius: var(--radius-sm);
-            flex-shrink: 0;
+            accent-color: var(--primary);
         }
 
-        .checklist-item label {
+        .checklist-label {
             flex: 1;
             cursor: pointer;
-            margin: 0;
-            font-size: var(--font-size-md);
-            font-weight: 500;
         }
 
-        .time-block {
-            background: var(--color-bg);
-            padding: 14px 16px;
-            border-radius: var(--radius-md);
-            margin-bottom: 10px;
-            border-left: 3px solid var(--color-primary);
-        }
-
-        .time-block strong {
-            color: var(--color-text);
-            font-weight: 600;
-            font-size: var(--font-size-md);
-        }
-
-        .time-block em {
-            color: var(--color-text-secondary);
-            display: block;
-            margin-top: 4px;
-            font-size: var(--font-size-base);
-            font-style: normal;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--color-primary);
-            color: var(--color-bg-alt);
-            padding: 10px 20px;
-            border-radius: var(--radius-md);
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            margin: var(--spacing-xs) 5px var(--spacing-xs) 0;
-            transition: var(--transition);
-            font-size: var(--font-size-md);
-            font-family: inherit;
-        }
-
-        .btn:hover {
-            background: var(--color-secondary);
-            transform: translateY(-1px);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .alert {
-            background: var(--color-info-bg);
-            border: 1px solid var(--color-info-border);
-            color: var(--color-info);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-lg);
-            font-size: var(--font-size-base);
-            line-height: 1.5;
-        }
-
-        .alert-warning {
-            background: var(--color-warning-bg);
-            border-color: var(--color-warning-border);
-            color: var(--color-warning);
-        }
-
-        code {
-            background: var(--color-bg);
-            padding: 2px 6px;
-            border-radius: var(--radius-sm);
-            font-family: 'Menlo', monospace;
-            font-size: var(--font-size-sm);
-        }
-
-        pre {
-            background: var(--color-bg);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            overflow-x: auto;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--spacing-sm);
-        }
-
-        .grid-2-auto {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xs);
-        }
-
-        .card {
-            background: var(--color-bg);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-border);
-        }
-
-        .card h4 {
-            margin-bottom: var(--spacing-md);
+        .checklist-item.done .checklist-label {
+            text-decoration: line-through;
+            color: var(--text-secondary);
         }
 
         footer {
             text-align: center;
-            color: var(--color-text-tertiary);
-            padding: var(--spacing-xl) 0 var(--spacing-lg);
-            margin-top: 40px;
-            font-size: var(--font-size-sm);
-            line-height: 1.5;
+            color: white;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .alert {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: var(--font-size-2xl);
+                font-size: 1.8rem;
             }
 
-            .section {
-                padding: var(--spacing-lg);
-            }
-
-            .nav-tabs {
-                margin-bottom: var(--spacing-lg);
-            }
-
-            .grid-2, .grid-2-auto {
+            .metrics-grid {
                 grid-template-columns: 1fr;
             }
 
-            .grid-3 {
+            .summary-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
 
-        .tracker-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            margin-bottom: 10px;
-            font-size: var(--font-size-md);
-            font-family: inherit;
-        }
+            .nav-tabs {
+                gap: 8px;
+            }
 
-        .save-btn {
-            background: var(--color-success);
-        }
-
-        .save-btn:hover {
-            background: var(--color-success-dark);
-        }
-
-        .checklist-label {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--color-primary);
-            color: var(--color-bg-alt);
-            padding: var(--spacing-sm) 16px;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        }
-
-        .metric-card-large {
-            cursor: pointer;
-            border: 2px solid var(--color-border);
-            transition: var(--transition);
-        }
-
-        .metric-card-large:hover {
-            border-color: var(--color-primary);
-            background: #efefef;
-        }
-
-        .metric-card-large.active {
-            background: #d4edda;
-            border-color: #34c759;
-        }
-
-        .progress-bar-container {
-            background: var(--color-bg-alt);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-        }
-
-        .progress-bar {
-            background: var(--color-success);
-            height: 100%;
-            transition: width 0.3s ease;
-        }
-
-        .review-card {
-            background: var(--color-bg);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-md);
-            border-left: 4px solid var(--color-primary);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .week-history-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: var(--spacing-xs);
-        }
-
-        .week-history-item {
-            border-radius: var(--radius-md);
-            padding: 10px 5px;
-            text-align: center;
-            font-size: var(--font-size-sm);
-            border: 1px solid var(--color-border);
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: var(--spacing-sm);
-        }
-
-        .calendar-card {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .calendar-card.today {
-            border-color: var(--color-primary);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-
-        .calendar-card h4 {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: var(--font-size-md);
-        }
-
-        .calendar-tag {
-            background: #eef2ff;
-            color: #4338ca;
-            padding: 2px 8px;
-            border-radius: 999px;
-            font-size: var(--font-size-sm);
-        }
-
-        .calendar-plan-item {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            font-size: var(--font-size-md);
-            color: var(--color-text-secondary);
-        }
-
-        .calendar-status {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 6px;
-            font-size: var(--font-size-sm);
-        }
-
-        .calendar-status div {
-            background: var(--color-bg-alt);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            padding: 6px;
-            text-align: center;
+            .nav-tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -570,1585 +380,369 @@
     <div class="container">
         <header>
             <h1>🎯 Sistema Sergio 2026</h1>
-            <p style="color: white; margin-top: 10px;">Tu plan personalizado de mejora • Todo en una página</p>
+            <p>Tu camino hacia la mejora personal integral</p>
         </header>
 
-        <div class="nav-tabs" id="navTabs">
-            <button class="nav-tab active" onclick="showSection('tracker-diario', this)">📍 Hoy</button>
-            <button class="nav-tab" onclick="showSection('calendario', this)">🗓️ Calendario</button>
-            <button class="nav-tab" onclick="showSection('dashboard', this)">📊 Dashboard</button>
-            <button class="nav-tab" onclick="showSection('semana1', this)">🚀 Semana 1</button>
-            <button class="nav-tab" onclick="showSection('sueno', this)">😴 Protocolo Sueño</button>
-            <button class="nav-tab" onclick="showSection('pomodoro', this)">⚡ Pomodoro</button>
-            <button class="nav-tab" onclick="showSection('ejercicio', this)">🏋️ Ejercicio</button>
-            <button class="nav-tab" onclick="showSection('rutina', this)">🌅 Rutina</button>
-            <button class="nav-tab" onclick="showSection('tracker-metricas', this)">📊 Tracker</button>
-            <button class="nav-tab" onclick="showSection('revision', this)">📋 Revisión</button>
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('tracker')">📊 Tracker Hoy</button>
+            <button class="nav-tab" onclick="switchTab('schedule')">📅 Horario</button>
+            <button class="nav-tab" onclick="switchTab('diet')">🍽️ Dieta Semanal</button>
+            <button class="nav-tab" onclick="switchTab('weekly')">📋 Semana</button>
         </div>
 
-        <!-- CALENDARIO SEMANAL -->
-        <div id="calendario" class="section">
-            <h2>🗓️ Calendario semanal</h2>
-            <p>Lo que toca cada día y el registro real de la semana en curso.</p>
-
-            <div class="alert" id="calendarWeekRange" style="margin-bottom: 16px;">
-                Cargando semana...
-            </div>
-
-            <div class="calendar-grid" id="calendarContainer"></div>
-
-            <div class="alert" style="margin-top: 16px;">
-                Leyenda: ✅ completado • ❌ pendiente • 🔥 pomodoros reales • Meta: 12 pomodoros, 7-8h sueño, ejercicio L-M-V.
-            </div>
-        </div>
-
-        <!-- DASHBOARD -->
-        <div id="dashboard" class="section">
-            <h2>📊 Dashboard - Sistema Sergio</h2>
-
-            <div class="metric-grid">
-                <div class="metric-card">
-                    <div>💪 Ejercicio</div>
-                    <div class="value">120 min</div>
-                    <div>3 sesiones/semana</div>
-                </div>
-                <div class="metric-card">
-                    <div>⚡ Pomodoros</div>
-                    <div class="value">12-15</div>
-                    <div>Diarios de enfoque</div>
-                </div>
-                <div class="metric-card">
-                    <div>😴 Sueño</div>
-                    <div class="value">7-8 h</div>
-                    <div>Cada noche</div>
-                </div>
-            </div>
-
-            <div class="alert" id="todayAlert">
-                <strong>✅ HOY (17 Enero - SÁBADO):</strong> Disfruta del tiempo libre. Prepara tu espacio de trabajo, descarga apps, planifica la semana.
-            </div>
-
-            <h3>🎯 ¿Cómo empiezas?</h3>
-            <div class="grid-2">
-                <div class="card">
-                    <h4>1️⃣ Lee HOY</h4>
-                    <p>Semana 1 Plan + Protocolo Sueño (50 min)</p>
-                    <button class="btn" onclick="showSection('semana1')">Leer Semana 1</button>
-                </div>
-                <div class="card">
-                    <h4>2️⃣ Prepara</h4>
-                    <p>Apps (Be Focused) + Habitación + Equipo (45 min)</p>
-                    <button class="btn" onclick="showSection('sueno')">Leer Sueño</button>
-                </div>
-                <div class="card">
-                    <h4>3️⃣ Mañana 07:15h</h4>
-                    <p>Despierta y empieza rutina matinal</p>
-                    <button class="btn" onclick="showSection('rutina')">Leer Rutina</button>
-                </div>
-            </div>
-
-            <h3>📚 Todos los módulos</h3>
-            <p>Usa el menú de arriba para acceder a cada sección completa del sistema.</p>
-
-            <h3>☁️ Sincronización</h3>
-            <div class="grid-2">
-                <button class="btn" onclick="createShareLink()" style="background: #007AFF; width: 100%;">
-                    🔗 Copiar Link Compartible
-                </button>
-                <button class="btn" onclick="downloadBackup()" style="background: #34c759; width: 100%;">
-                    📥 Descargar Backup
-                </button>
-                <button class="btn" onclick="uploadBackup()" style="background: #ff9500; width: 100%;">
-                    📤 Restaurar Backup
-                </button>
-            </div>
-            <p style="font-size: 12px; color: #999; margin-top: 12px;">
-                <strong>Link:</strong> Copia el link y úsalo en otro dispositivo para sincronizar automáticamente.<br>
-                <strong>Backup:</strong> Descarga/restaura tu archivo de datos.
-            </p>
-        </div>
-
-        <!-- SEMANA 1 -->
-        <div id="semana1" class="section">
-            <h2>🚀 COMIENZA MAÑANA - Plan 7 Días</h2>
-
-            <h3>⏰ HOY (17 Enero)</h3>
-            <div class="checklist">
-                <div class="checklist-item">
-                    <input type="checkbox">
-                    <label>📱 Descargar app "Be Focused" o "Forest"</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="checkbox">
-                    <label>🛏️ Compra persiana oscura (€20-50) O cinta negra</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="checkbox">
-                    <label>🛏️ Reorganiza cama (lado derecho, almohada firme)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="checkbox">
-                    <label>📖 Lee este documento (20 min)</label>
-                </div>
-            </div>
-
-            <h3>📅 MAÑANA - Lunes 18 Enero</h3>
-
-            <div class="time-block">
-                <strong>07:15 - Rutina mañana (20 min)</strong>
-                <em>Agua + limón (5 min) → Blinkist (10 min) → Desayuno (5 min)</em>
-            </div>
-
-            <div class="time-block">
-                <strong>09:00-18:30 - Trabajo con Pomodoros</strong>
-                <em>15 min enfoque + 3 min break. Meta: 12 Pomodoros/día</em>
-            </div>
-
-            <div class="time-block">
-                <strong>18:30-19:15 - Ejercicio (40 min)</strong>
-                <em>Calentamiento 5 min → Ejercicio 30 min → Estiramiento 5 min</em>
-            </div>
-
-            <div class="time-block">
-                <strong>21:00-21:30 - Rutina noche</strong>
-                <em>Estiramiento hombros (3 min) → Respiración 4-7-8 → Duermes</em>
-            </div>
-
-            <h3>🎯 OBJETIVO SEMANA 1</h3>
-            <ul>
-                <li><strong>Ejercicio:</strong> 3 sesiones × 40 min = 120 min ✓</li>
-                <li><strong>Pomodoros:</strong> 12-14 por día laboral = 60+ total ✓</li>
-                <li><strong>Sueño:</strong> 7-8 horas todas las noches ✓</li>
-            </ul>
-
-            <h3>❌ QUÉ NO HAGAS SEMANA 1</h3>
-            <ul>
-                <li>NO intentes Nivel 2 ejercicio (demasiado duro)</li>
-                <li>NO hagas 20 Pomodoros (agotador, burn out)</li>
-                <li>NO cambies todo a la vez (solo 3 cosas)</li>
-                <li>NO seas perfeccionista (si falta 1 cosa = NO ES FRACASO)</li>
-            </ul>
-        </div>
-
-        <!-- PROTOCOLO SUEÑO -->
-        <div id="sueno" class="section">
-            <h2>😴 Protocolo de Sueño & Hombros - CRÍTICO</h2>
-
-            <div class="alert alert-warning">
-                <strong>⚠️ CRÍTICO:</strong> Duerme bien = Base de TODO. Sin sueño, todo lo demás falla.
-            </div>
-
-            <h3>🛏️ POSTURA CORRECTA EN CAMA</h3>
-            <p><strong>El Problema:</strong> Duermes en postura que tensa hombros 8 horas = Dolor + Ansiedad + Sueño pobre</p>
-
-            <div class="card">
-                <h4>Postura Correcta (Lado Derecho)</h4>
-                <ul>
-                    <li>Cabeza en almohada (no muy alta)</li>
-                    <li>Cuello RECTO (no girado)</li>
-                    <li>Hombro RELAJADO hacia abajo</li>
-                    <li>Brazo izquierdo ADELANTE en almohada</li>
-                    <li>Cadera/pierna doblada 90°</li>
-                </ul>
-            </div>
-
-            <h3>🌙 AMBIENTE ÓPTIMO</h3>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h4>1️⃣ OSCURIDAD (CRÍTICO)</h4>
-                    <ul>
-                        <li>Persiana oscura o cinta negra</li>
-                        <li>Sin móvil (pantalla brilla)</li>
-                        <li>Oscuridad total 21:30-07:15</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h4>2️⃣ TEMPERATURA</h4>
-                    <ul>
-                        <li>Ideal: 16-19°C</li>
-                        <li>Si caliente: Abre ventana antes dormir</li>
-                        <li>Si fría: Manta extra</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h4>3️⃣ SONIDO</h4>
-                    <ul>
-                        <li>Silencio ideal</li>
-                        <li>Si hay ruido: Tapones €5</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h4>4️⃣ AROMAS (BONUS)</h4>
-                    <ul>
-                        <li>Lavanda (pillow spray €5)</li>
-                        <li>Eucalipto (difusor €10)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🌬️ TÉCNICA: RESPIRACIÓN 4-7-8</h3>
-            <p>Si no duermes después 10 min en cama:</p>
-            <ol>
-                <li>Acostado, lado derecho, postura correcta</li>
-                <li>Respira por nariz (4 segundos)</li>
-                <li>Retén aire (7 segundos)</li>
-                <li>Exhala por boca (8 segundos)</li>
-                <li>Repite 5 veces</li>
-            </ol>
-
-            <h3>🕐 RUTINA NOCTURNA (21:00-21:30)</h3>
-
-            <div class="time-block">
-                <strong>21:00 - Cena ligera</strong>
-                <em>Proteína + carbohidrato. Ejemplo: Pechuga + arroz</em>
-            </div>
-
-            <div class="time-block">
-                <strong>21:05 - Ducha/higiene</strong>
-                <em>Agua templada (no caliente)</em>
-            </div>
-
-            <div class="time-block">
-                <strong>21:15 - Estiramiento hombros (3 min)</strong>
-                <em>Pecho (20 seg), Trapecio (20 seg c/lado), Rotación (10 veces)</em>
-            </div>
-
-            <div class="time-block">
-                <strong>21:25 - Luz OFF</strong>
-                <em>Acuéstate en postura, respiración 4-7-8</em>
-            </div>
-
-            <div class="time-block">
-                <strong>21:30 - Dormido (objetivo)</strong>
-            </div>
-
-            <h3>📊 EXPECTATIVAS</h3>
-            <ul>
-                <li><strong>Semana 1:</strong> Postura incómoda, dolor igual/peor (tensión), sueño frágil</li>
-                <li><strong>Semana 2:</strong> Postura normal, dolor empieza a mejorar, sueño mejor, energía empieza a subir</li>
-                <li><strong>Semana 3-4:</strong> Dolor 50% menos, duermes 7-8h sin problema, energía NOTABLE</li>
-                <li><strong>Mes 2:</strong> Dolor casi desaparece, sueño excelente, todo mejora</li>
-            </ul>
-        </div>
-
-        <!-- POMODORO -->
-        <div id="pomodoro" class="section">
-            <h2>⚡ Pomodoro Anti-Distracción - Sistema Para Ti</h2>
-
-            <div class="alert">
-                <strong>Tu realidad:</strong> Max 30 min enfoque. Por eso: 15 min Pomodoro (no 25)
-            </div>
-
-            <h3>🟢 TU SISTEMA: Pomodoro 15 min</h3>
-
-            <div class="card">
-                <h4>Estructura</h4>
-                <ul>
-                    <li>15 min ENFOQUE MÁXIMO (teléfono lejos)</li>
-                    <li>3 min BREAK (caminar, agua, no pantalla)</li>
-                    <li>15 min ENFOQUE (otra tarea)</li>
-                    <li>3 min BREAK</li>
-                    <li>15 min ENFOQUE</li>
-                    <li>5 min BREAK LARGO</li>
-                </ul>
-                <p style="margin-top: 15px;"><strong>Total:</strong> 3 Pomodoros = 45 min trabajo real + 11 min breaks = 56 min sesión</p>
-            </div>
-
-            <h3>📱 HERRAMIENTAS (Elige 1)</h3>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h4>Be Focused (RECOMENDADO)</h4>
-                    <ul>
-                        <li>iOS/Android</li>
-                        <li>Visual (red circle)</li>
-                        <li>Bloquea distracciones</li>
-                        <li>Histórico semanal</li>
-                        <li>Gratis versión básica</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h4>Forest (Más divertida)</h4>
-                    <ul>
-                        <li>Plantas árbol virtual 15 min</li>
-                        <li>Si sales app = se muere</li>
-                        <li>Psicológicamente potente</li>
-                        <li>€2,99</li>
-                    </ul>
-                </div>
-            </div>
-
-            <h3>🔒 BLOQUEOS REALES</h3>
-
-            <div class="card">
-                <h4>EN MÓVIL:</h4>
-                <ul>
-                    <li>Modo Avión ON</li>
-                    <li>Notificaciones todas OFF</li>
-                    <li>Móvil EN OTRA HABITACIÓN o cajón</li>
-                    <li>Slack/WhatsApp CERRADO</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>EN ORDENADOR:</h4>
-                <ul>
-                    <li>Desconectar WiFi (si puedes)</li>
-                    <li>Email CERRADO</li>
-                    <li>Redes sociales BLOQUEADAS</li>
-                    <li>YouTube BLOQUEADO</li>
-                    <li>Chats MINIMIZADOS</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>EN ENTORNO:</h4>
-                <ul>
-                    <li>Audífonos/música ON</li>
-                    <li>Puerta cerrada</li>
-                    <li>Teléfono SILENCIADO</li>
-                    <li>Postura: Silla buena, monitor altura ojos</li>
-                </ul>
-            </div>
-
-            <h3>🎯 OBJETIVOS SEMANALES</h3>
-            <ul>
-                <li><strong>Semana 1:</strong> 10 Pomodoros/día × 5 días = 50 Pomodoros</li>
-                <li><strong>Semana 2:</strong> 12 Pomodoros/día × 5 días = 60 Pomodoros</li>
-                <li><strong>Mes 1:</strong> 15 Pomodoros/día es normal</li>
-            </ul>
-
-            <h3>🚨 SI TE DISTRAES</h3>
-            <p><strong>Regla: "La Ley de los 2 Minutos"</strong></p>
-            <ol>
-                <li>Apunta en post-it (no en móvil)</li>
-                <li>Sigue 15 min</li>
-                <li>En break: Chequea post-it</li>
-                <li>Si urgente: Hazlo próximo Pomodoro</li>
-                <li>Si no urgente: Ignora</li>
-            </ol>
-            <p style="margin-top: 15px;"><em>Realidad: 99% de "urgencias" no lo son.</em></p>
-        </div>
-
-        <!-- EJERCICIO -->
-        <div id="ejercicio" class="section">
-            <h2>🏋️ Ejercicio en Casa 40 min</h2>
-
-            <div class="alert">
-                <strong>Tienes:</strong> Barra + Paralelas + Goma 15lb = SUFICIENTE
-            </div>
-
-            <h3>📅 HORARIO RECOMENDADO</h3>
-            <p><strong>MEJOR MOMENTO: 18:30-19:15 (Lunes, Miércoles, Viernes)</strong></p>
-            <ul>
-                <li>Energía post-trabajo recuperada</li>
-                <li>Cena después = Recuperación + Sueño</li>
-                <li>Luz natural + Vitamina D</li>
-                <li>Rutina consistente = Hábito</li>
-            </ul>
-
-            <h3>📋 RUTINA 40 MINUTOS</h3>
-
-            <div class="card">
-                <h4>00-05 min: CALENTAMIENTO</h4>
-                <ul>
-                    <li>Saltar comba o jumping jacks (1 min)</li>
-                    <li>Rotación brazos (1 min)</li>
-                    <li>Muñecas (20 seg)</li>
-                    <li>Caderas (30 seg)</li>
-                    <li>Trote en lugar (1 min)</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>05-25 min: FUERZA SUPERIOR (20 min)</h4>
-                <p><strong>Dominadas/Flexiones (6 min):</strong> 4 series × 5 reps</p>
-                <p><strong>Fondos Paralelas (6 min):</strong> 3 series × 5-8 reps</p>
-                <p><strong>Goma Resistencia (5 min):</strong> Remo + Press pecho, 2 series cada</p>
-            </div>
-
-            <div class="card">
-                <h4>25-35 min: FUERZA INFERIOR + CORE (10 min)</h4>
-                <p><strong>Planchas (2 min):</strong> 3 × 20 seg</p>
-                <p><strong>Sentadillas (3 min):</strong> 3 × 15 reps</p>
-                <p><strong>Abdominales (3 min):</strong> 3 × 10 crunches</p>
-            </div>
-
-            <div class="card">
-                <h4>35-40 min: ESTIRAMIENTO (5 min) - CRÍTICO</h4>
-                <p><strong>Pecho (1 min):</strong> Brazos atrás, 20 seg × 3</p>
-                <p><strong>Trapecio (1.5 min):</strong> Inclina cabeza, 20 seg c/lado × 2</p>
-                <p><strong>Hombro posterior (1.5 min):</strong> Brazo cruza pecho, 20 seg × 2</p>
-                <p><strong>Rotación (1 min):</strong> Brazos colgando, 10 veces lento</p>
-            </div>
-
-            <h3>📈 PROGRESIÓN</h3>
-            <ul>
-                <li><strong>Semana 1-2 (NIVEL 1):</strong> Completar sin modificar, técnica correcta</li>
-                <li><strong>Semana 3-4 (NIVEL 2):</strong> Aumenta 1-2 reps por ejercicio</li>
-                <li><strong>Semana 5-6 (NIVEL 2+):</strong> Añade 1 serie más</li>
-            </ul>
-
-            <h3>⚠️ ERRORES A EVITAR</h3>
-            <ul>
-                <li>NO empices Nivel 3. Empieza Nivel 1.</li>
-                <li>NO entrenes 1 hora. 40 min está bien.</li>
-                <li>NO entrenes todos los días. 3 veces/semana.</li>
-                <li>NO omitas estiramiento. Los 5 min finales SON CRÍTICOS.</li>
-            </ul>
-        </div>
-
-        <!-- RUTINA MATINAL -->
-        <div id="rutina" class="section">
-            <h2>🌅 Mini-Rutina 7:15h - Solo 20 Minutos</h2>
-
-            <div class="alert">
-                <strong>⚡ Importante:</strong> No es 5 AM. Es REALISTA para ti.
-            </div>
-
-            <h3>🎯 Por qué 7:15h (no 5 AM)</h3>
-            <ul>
-                <li>Trabajas 9-18:30h</li>
-                <li>5 AM es imposible</li>
-                <li>7:15h = Tu ritmo real</li>
-                <li>Consistencia > Fantasía</li>
-            </ul>
-
-            <h3>⏰ ESTRUCTURA 20 MINUTOS</h3>
-
-            <div class="card">
-                <h4>BLOQUE 1: Movimiento (5 min) - 07:15-07:20</h4>
-                <p><strong>Opción A (Buen tiempo):</strong> Luz solar directo + Agua con limón</p>
-                <p><strong>Opción B (Lluvia):</strong> 5 flexiones O 1 min trote O 10 fondos</p>
-            </div>
-
-            <div class="card">
-                <h4>BLOQUE 2: Lectura (10 min) - 07:20-07:30</h4>
-                <p><strong>Tu Herramienta:</strong> Blinkist (15 min summary)</p>
-                <p>Elige: Productividad, Fitness, Finanzas, Psicología</p>
-                <p><strong>Alternativa:</strong> Kindle 10 min lectura</p>
-                <p style="color: #dc3545;"><strong>❌ NO:</strong> Redes, Email, YouTube, Noticias</p>
-            </div>
-
-            <div class="card">
-                <h4>BLOQUE 3: Desayuno (5 min) - 07:30-07:35</h4>
-                <ul>
-                    <li><strong>Proteína:</strong> 2 huevos O lata atún O pechuga fría</li>
-                    <li><strong>Carbohidrato:</strong> Pan integral O cereales avena O arroz</li>
-                    <li><strong>Grasa:</strong> Mantequilla O aceite O aguacate</li>
-                    <li><strong>Bebida:</strong> Café O té + Agua</li>
-                </ul>
-            </div>
-
-            <h3>🚨 VERSIÓN DE EMERGENCIA (5 min)</h3>
-            <p>Si estás muy ocupado/cansado:</p>
-            <ul>
-                <li>Agua con limón (1 min)</li>
-                <li>Blinkist resumen (2 min)</li>
-                <li>Café rápido (1 min)</li>
-                <li>Listo (1 min)</li>
-            </ul>
-            <p><em>Es mejor 5 min real, que 0 por perfeccionismo</em></p>
-
-            <h3>📊 EXPECTATIVAS SEMANA 1</h3>
-            <ul>
-                <li><strong>Día 1-2:</strong> Incómodo/raro, pero hazes</li>
-                <li><strong>Día 3-5:</strong> Empieza a sentirse normal, energía sube</li>
-                <li><strong>Semana 2:</strong> Se hace solo, energía consistente, hábito formado</li>
-            </ul>
-        </div>
-
-        <!-- TRACKER 3 MÉTRICAS -->
-        <div id="tracker-metricas" class="section">
-            <h2>📊 Tracker 3 Métricas - Súper Simple</h2>
-
-            <div class="alert">
-                <strong>Solo 3 cosas importan:</strong> 1) ¿Ejercicio 40+ min? 2) ¿10+ Pomodoros? 3) ¿7-8h sueño?
-            </div>
-
-            <h3>✅ DEFINICIONES CLARAS</h3>
-
-            <div class="card">
-                <h4>EJERCICIO ✓:</h4>
-                <ul>
-                    <li>40+ minutos continuos</li>
-                    <li>Lunes/Miércoles/Viernes preferible</li>
-                    <li>Si 45 min = ✓</li>
-                    <li>Si 35 min = ✗</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>POMODOROS ✓:</h4>
-                <ul>
-                    <li>10+ Pomodoros completados en el día</li>
-                    <li>Mira app Be Focused al final del día</li>
-                    <li>Si 12 = ✓</li>
-                    <li>Si 8 = ✗</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>SUEÑO ✓:</h4>
-                <ul>
-                    <li>7-8 horas dormidas</li>
-                    <li>Ejemplo: Duermes 22:30h → Despiertas 07:30h</li>
-                    <li>Si 7.5 hrs = ✓</li>
-                    <li>Si 6 hrs = ✗</li>
-                </ul>
-            </div>
-
-            <h3>🎯 OBJETIVOS POR MES</h3>
-
-            <div class="card">
-                <h4>ENERO:</h4>
-                <ul>
-                    <li>Ejercicio: 10-12 sesiones</li>
-                    <li>Pomodoros: 700+ total</li>
-                    <li>Sueño: 210+ horas (7h promedio)</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h4>FEBRERO:</h4>
-                <ul>
-                    <li>Ejercicio: Mismo (consistencia)</li>
-                    <li>Pomodoros: 750+</li>
-                    <li>Sueño: 224+ horas (8h promedio)</li>
-                </ul>
-            </div>
-
-            <h3>🔴 REGLAS IMPORTANTES</h3>
-            <ul>
-                <li><strong>NO hagas 10 métricas.</strong> Solo 3. Más = Abrumador = Fallas.</li>
-                <li><strong>NO seas perfecto (7/7 días).</strong> 4-5 días = ✓ Excelente.</li>
-                <li><strong>NO te rindas un mal día.</strong> Un día ≠ Mala semana. Sigue.</li>
-                <li><strong>NO empieces con 5 métricas.</strong> 3 es el número mágico.</li>
-            </ul>
-
-            <h3>📋 TABLA PARA IMPRIMIR O USAR</h3>
-            <p>Copia y completa cada día:</p>
-            <pre style="background: #f0f0f0; padding: 15px; border-radius: 6px; overflow-x: auto;">
-FECHA | DÍA | EJERCICIO | POMODOROS | SUEÑO | ✓ GANASTE?
-------|-----|-----------|-----------|-------|--------
-      |     | ✓/✗       | ✓/✗       | ✓/✗   | ✓/✗
-      |     | ✓/✗       | ✓/✗       | ✓/✗   | ✓/✗
-            </pre>
-        </div>
-
-        <!-- REVISIÓN SEMANAL -->
-        <div id="revision" class="section">
-            <h2>📋 Revisión Semanal 15 min</h2>
-
-            <div style="background: #f5f5f7; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                <strong>📅 Semana actual:</strong>
-                <div style="font-size: 14px; color: #666; margin-top: 8px;" id="weekRangeDisplay">Cargando...</div>
-            </div>
-
-            <h3>❓ Las 3 Preguntas</h3>
-
-            <!-- PREGUNTA 1: EJERCICIO -->
-            <div class="checklist" style="margin-bottom: 20px;">
-                <div class="checklist-item">
-                    <input type="radio" name="exercise" value="si" id="ex-si" onchange="saveWeeklyReview()">
-                    <label for="ex-si">✅ SÍ: Hice ejercicio 3× esta semana</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="exercise" value="casi" id="ex-casi" onchange="saveWeeklyReview()">
-                    <label for="ex-casi">⚠️ CASI: 2 días (próxima semana prioriza)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="exercise" value="no" id="ex-no" onchange="saveWeeklyReview()">
-                    <label for="ex-no">❌ NO: Menos de 2 días (¿qué pasó?)</label>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 2: POMODOROS -->
-            <div class="checklist" style="margin-bottom: 20px;">
-                <div class="checklist-item">
-                    <input type="radio" name="pomodoros" value="si" id="pom-si" onchange="saveWeeklyReview()">
-                    <label for="pom-si">✅ SÍ: 10+ Pomodoros/día laboral (excelente)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="pomodoros" value="parcial" id="pom-parcial" onchange="saveWeeklyReview()">
-                    <label for="pom-parcial">⚠️ PARCIAL: 5-9/día (mejor)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="pomodoros" value="no" id="pom-no" onchange="saveWeeklyReview()">
-                    <label for="pom-no">❌ NO: 0-4/día (aumenta bloqueos)</label>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 3: SUEÑO -->
-            <div class="checklist" style="margin-bottom: 20px;">
-                <div class="checklist-item">
-                    <input type="radio" name="sleep" value="si" id="sleep-si" onchange="saveWeeklyReview()">
-                    <label for="sleep-si">✅ SÍ: 5+ noches de 7-8h (excelente)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="sleep" value="parcial" id="sleep-parcial" onchange="saveWeeklyReview()">
-                    <label for="sleep-parcial">⚠️ PARCIAL: 3-4 noches (mejor)</label>
-                </div>
-                <div class="checklist-item">
-                    <input type="radio" name="sleep" value="no" id="sleep-no" onchange="saveWeeklyReview()">
-                    <label for="sleep-no">❌ CRÍTICO: <3 noches (mejora ambiente)</label>
-                </div>
-            </div>
-
-            <h3>📝 Notas de la Semana</h3>
-            <textarea id="weekNotes" placeholder="¿Qué cambios harás próxima semana? Ej: 'Entrenar lunes en vez de viernes'" 
-                      style="width: 100%; height: 80px; padding: 12px; border: 1px solid #e5e5e7; border-radius: 8px; font-family: inherit; font-size: 14px; resize: none; margin-bottom: 15px;"
-                      onchange="saveWeeklyReview()"></textarea>
-
-            <button class="btn save-btn" onclick="saveWeeklyReview()" style="width: 100%; margin-bottom: 20px;">💾 Guardar Revisión</button>
-
-            <h3>📊 Historial de Revisiones</h3>
-            <div id="reviewHistoryContainer"></div>
-
-            <h3>🎯 Recomendaciones por Métrica</h3>
-            <div class="card">
-                <h4>💪 Si ejercicio NO va bien:</h4>
-                <p>Mantén horario fijo (LUN/MIÉ/VIE 18:30). Es difícil romper hábito si cambias días.</p>
-            </div>
-            <div class="card">
-                <h4>⚡ Si Pomodoros van MAL:</h4>
-                <p>Aumenta bloqueos (móvil fuera, WiFi OFF). No es disciplina, es ambiente.</p>
-            </div>
-            <div class="card">
-                <h4>😴 Si sueño va MAL:</h4>
-                <p><strong>PRIORIDAD #1.</strong> Mejora ambiente (oscuridad total) O toma magnesio. Sin sueño, todo falla.</p>
-            </div>
-        </div>
-
-        <!-- TRACKER DIARIO -->
-        <div id="tracker-diario" class="section active">
-            <h2>📍 Hoy - Tracker</h2>
-
-            <div style="text-align: center; color: #1d1d1d; font-size: 1.1rem; margin-bottom: 25px; font-weight: 600;" id="todayDateDisplay">
-                Cargando...
-            </div>
-
-            <!-- 3 MÉTRICAS PRINCIPALES -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 25px;">
-                
-                <!-- EJERCICIO -->
-                <div style="background: #f5f5f7; border-radius: 12px; padding: 16px; text-align: center; border: 2px solid #e5e5e7; cursor: pointer; transition: all 0.2s;" id="exerciseCard" onclick="toggleMetric('exercise')">
-                    <div style="font-size: 32px; margin-bottom: 8px;">💪</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 8px;">Ejercicio</div>
-                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;" id="exerciseDisplay">❌</div>
-                    <div style="font-size: 11px; color: #999;">40 min</div>
-                </div>
-
-                <!-- POMODOROS -->
-                <div style="background: #f5f5f7; border-radius: 12px; padding: 16px; text-align: center; border: 2px solid #e5e5e7;">
-                    <div style="font-size: 32px; margin-bottom: 8px;">⚡</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 8px;">Pomodoros</div>
-                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;" id="pomodoroDisplay">0</div>
-                    <div style="display: flex; gap: 6px; justify-content: center; margin-top: 10px;">
-                        <button class="btn" style="padding: 6px 10px; font-size: 12px; flex: 1; margin: 0;" onclick="decrementPomodoro()">−</button>
-                        <button class="btn" style="padding: 6px 10px; font-size: 12px; flex: 1; margin: 0;" onclick="incrementPomodoro()">+</button>
+        <!-- TAB: TRACKER HOY -->
+        <div id="tracker" class="tab-content active">
+            <div class="summary">
+                <h3>Progreso Hoy</h3>
+                <div class="summary-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="exerciseStatusSummary">⏳</div>
+                        <div class="stat-label">Ejercicio</div>
                     </div>
-                </div>
-
-                <!-- SUEÑO -->
-                <div style="background: #f5f5f7; border-radius: 12px; padding: 16px; text-align: center; border: 2px solid #e5e5e7; cursor: pointer; transition: all 0.2s;" id="sleepCard" onclick="toggleMetric('sleep')">
-                    <div style="font-size: 32px; margin-bottom: 8px;">😴</div>
-                    <div style="font-size: 13px; color: #666; margin-bottom: 8px;">Sueño</div>
-                    <div style="font-size: 28px; font-weight: 700; margin-bottom: 8px;" id="sleepDisplay">❌</div>
-                    <div style="font-size: 11px; color: #999;">7-8 hrs</div>
-                </div>
-
-            </div>
-
-            <!-- BARRAS DE PROGRESO -->
-            <div style="background: #f5f5f7; border-radius: 12px; padding: 16px; margin-bottom: 25px;">
-                <div style="margin-bottom: 15px;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span style="font-size: 13px; font-weight: 600;">Pomodoros: <span id="pomodoroProgress">0/12</span></span>
+                    <div class="stat">
+                        <div class="stat-value" id="lectureStatusSummary">⏳</div>
+                        <div class="stat-label">Lectura</div>
                     </div>
-                    <div style="background: white; height: 8px; border-radius: 4px; overflow: hidden; border: 1px solid #e5e5e7;">
-                        <div id="pomodoroBar" style="background: #34c759; height: 100%; width: 0%; transition: width 0.3s;"></div>
+                    <div class="stat">
+                        <div class="stat-value" id="foodStatusSummary">⏳</div>
+                        <div class="stat-label">Alimentación</div>
                     </div>
-                </div>
-
-                <div style="display: flex; gap: 10px;">
-                    <div style="flex: 1;">
-                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Ejercicio</div>
-                        <div style="background: white; height: 6px; border-radius: 3px; overflow: hidden; border: 1px solid #e5e5e7;">
-                            <div id="exerciseBar" style="background: #ff6b6b; height: 100%; width: 0%; transition: width 0.3s;"></div>
-                        </div>
-                    </div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Sueño</div>
-                        <div style="background: white; height: 6px; border-radius: 3px; overflow: hidden; border: 1px solid #e5e5e7;">
-                            <div id="sleepBar" style="background: #5ac8fa; height: 100%; width: 0%; transition: width 0.3s;"></div>
-                        </div>
+                    <div class="stat">
+                        <div class="stat-value" id="sleepStatusSummary">⏳</div>
+                        <div class="stat-label">Sueño</div>
                     </div>
                 </div>
             </div>
 
-            <!-- CHECKLIST DEL DÍA -->
-            <h3>✅ Checklist Hoy</h3>
-            <div class="checklist" id="checklistContainer"></div>
+            <div class="metrics-grid">
+                <div class="metric-card pending" id="exerciseCard" onclick="toggleMetric('exercise')">
+                    <div class="metric-icon">💪</div>
+                    <div class="metric-title">Ejercicio</div>
+                    <div class="metric-status" id="exerciseToggle">❌</div>
+                    <div class="metric-desc">40 min continuos</div>
+                </div>
 
-            <!-- HORARIO -->
-            <h3 style="margin-top: 25px;">📅 Horario</h3>
-            <div id="scheduleContainer"></div>
+                <div class="metric-card pending" id="lectureCard" onclick="toggleMetric('lecture')">
+                    <div class="metric-icon">📚</div>
+                    <div class="metric-title">Lectura</div>
+                    <div class="metric-status" id="lectureToggle">❌</div>
+                    <div class="metric-desc">30+ minutos</div>
+                </div>
 
-            <!-- INTEGRACIÓN GOOGLE CALENDAR -->
-            <h3 style="margin-top: 25px;">📅 Añadir a Google Calendar</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-                <button class="btn" onclick="addToGoogleCalendar('exercise')" style="background: #ff6b6b; width: 100%; margin: 0;">
-                    💪 Ejercicio
-                </button>
-                <button class="btn" onclick="addToGoogleCalendar('sleep')" style="background: #5ac8fa; width: 100%; margin: 0;">
-                    😴 Sueño
-                </button>
-                <button class="btn" onclick="addToGoogleCalendar('pomodoro')" style="background: #34c759; width: 100%; margin: 0;">
-                    ⚡ Pomodoros
-                </button>
-                <button class="btn" onclick="addToGoogleCalendar('routine')" style="background: #ff9500; width: 100%; margin: 0;">
-                    🌅 Rutina
-                </button>
+                <div class="metric-card pending" id="foodCard" onclick="toggleMetric('food')">
+                    <div class="metric-icon">🍽️</div>
+                    <div class="metric-title">Alimentación</div>
+                    <div class="metric-status" id="foodToggle">❌</div>
+                    <div class="metric-desc">3 comidas equilibradas</div>
+                </div>
+
+                <div class="metric-card pending" id="sleepCard" onclick="toggleMetric('sleep')">
+                    <div class="metric-icon">😴</div>
+                    <div class="metric-title">Sueño</div>
+                    <div class="metric-status" id="sleepToggle">❌</div>
+                    <div class="metric-desc">7-8 horas</div>
+                </div>
             </div>
 
-            <!-- HISTÓRICO SEMANAL -->
-            <h3 style="margin-top: 25px;">📊 Últimos 7 Días</h3>
-            <div id="weekHistoryContainer"></div>
+            <div class="card">
+                <h2>✅ Checklist Diario</h2>
+                <div class="checklist" id="checklistContainer"></div>
+            </div>
 
+            <button class="btn" onclick="saveTodayProgress()">💾 Guardar Hoy</button>
+            <button class="btn" onclick="resetDay()">🔄 Limpiar</button>
+        </div>
+
+        <!-- TAB: HORARIO -->
+        <div id="schedule" class="tab-content">
+            <div class="card">
+                <h2>📅 Tu Horario Diario</h2>
+                <div id="scheduleContainer"></div>
+            </div>
+        </div>
+
+        <!-- TAB: DIETA SEMANAL -->
+        <div id="diet" class="tab-content">
+            <div class="card">
+                <h2>🍽️ Dieta Semanal Equilibrada</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem;">
+                    Elige 1 opción por comida cada día. Todas equilibradas y nutritivas.
+                </p>
+                <div id="dietContainer"></div>
+            </div>
+        </div>
+
+        <!-- TAB: TRACKER SEMANAL -->
+        <div id="weekly" class="tab-content">
+            <div class="card">
+                <h2>📋 Tracker Semanal</h2>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: var(--light); border-bottom: 2px solid var(--border);">
+                            <th style="padding: 10px; text-align: left;">Fecha</th>
+                            <th style="padding: 10px; text-align: center;">💪</th>
+                            <th style="padding: 10px; text-align: center;">📚</th>
+                            <th style="padding: 10px; text-align: center;">🍽️</th>
+                            <th style="padding: 10px; text-align: center;">😴</th>
+                            <th style="padding: 10px; text-align: center;">✅</th>
+                        </tr>
+                    </thead>
+                    <tbody id="weeklyTableBody"></tbody>
+                </table>
+            </div>
         </div>
 
         <footer>
-            <p>🎯 Sistema Sergio 2026 | Personalizado 100% | Realista y Consistente</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Todo en una página • Funciona offline • Móvil y Ordenador</p>
+            <p>🎯 Sistema Sergio 2026 | Mejora Personal Integral | Datos guardados localmente</p>
         </footer>
     </div>
 
     <script>
+        // Dieta semanal
+        const dietPlan = {
+            'Lunes': {
+                'Desayuno': 'Huevos revueltos + Pan integral + Plátano',
+                'Almuerzo': 'Pechuga de pollo + Brócoli + Arroz integral',
+                'Cena': 'Sopa casera + Pollo desmenuzado'
+            },
+            'Martes': {
+                'Desayuno': 'Yogur griego + Granola + Bayas',
+                'Almuerzo': 'Salmón a la plancha + Espinacas + Lentejas',
+                'Cena': 'Ensalada abundante + Atún'
+            },
+            'Miércoles': {
+                'Desayuno': 'Batido (plátano, leche, mantequilla de cacahuete)',
+                'Almuerzo': 'Carne magra + Pimiento + Papa',
+                'Cena': 'Tortilla francesa + Champiñones'
+            },
+            'Jueves': {
+                'Desayuno': 'Tostadas integrales + Aguacate + Huevo pochado',
+                'Almuerzo': 'Garbanzos + Acelga + Pasta integral',
+                'Cena': 'Bacalao a la papillote + Brócoli'
+            },
+            'Viernes': {
+                'Desayuno': 'Huevos revueltos + Pan integral + Plátano',
+                'Almuerzo': 'Pechuga de pollo + Brócoli + Arroz integral',
+                'Cena': 'Sopa casera + Pollo desmenuzado'
+            },
+            'Sábado': {
+                'Desayuno': 'Yogur griego + Granola + Bayas',
+                'Almuerzo': 'Salmón a la plancha + Espinacas + Lentejas',
+                'Cena': 'Ensalada abundante + Atún + Postre ligero'
+            },
+            'Domingo': {
+                'Desayuno': 'Batido (plátano, leche, mantequilla de cacahuete)',
+                'Almuerzo': 'Carne magra + Pimiento + Papa',
+                'Cena': 'Tortilla francesa + Champiñones + Chocolate negro'
+            }
+        };
+
+        const dailyChecklist = [
+            { id: 'water', text: 'Agua con limón al despertar', emoji: '💧' },
+            { id: 'lecture', text: 'Lectura matinal (15 min)', emoji: '📚' },
+            { id: 'breakfast', text: 'Desayuno equilibrado', emoji: '🥣' },
+            { id: 'work', text: 'Trabajo enfocado 9:00-18:30', emoji: '💼' },
+            { id: 'lunch', text: 'Almuerzo sano', emoji: '🍝' },
+            { id: 'exercise', text: 'Ejercicio (LUN/MIÉ/VIE)', emoji: '🏋️' },
+            { id: 'dinner', text: 'Cena saludable', emoji: '🍽️' },
+            { id: 'reading', text: 'Lectura antes dormir (20 min)', emoji: '📖' }
+        ];
+
+        const schedule = [
+            { time: '07:15', task: 'Despierta - Agua + Luz solar', icon: '☀️' },
+            { time: '07:20-07:35', task: 'Lectura matinal (15 min)', icon: '📚' },
+            { time: '07:35-07:45', task: 'Desayuno equilibrado', icon: '🥣' },
+            { time: '09:00-18:30', task: 'Trabajo enfocado', icon: '💼' },
+            { time: '13:00-14:00', task: 'Almuerzo sano', icon: '🍝' },
+            { time: '18:30-19:15', task: 'Ejercicio (LUN/MIÉ/VIE)', icon: '🏋️' },
+            { time: '19:15-20:00', task: 'Cena saludable', icon: '🍽️' },
+            { time: '21:00-21:20', task: 'Lectura antes dormir', icon: '📖' },
+            { time: '21:20-21:30', task: 'Rutina nocturna (respiración)', icon: '🧘' },
+            { time: '21:30', task: 'Dormir (7-8 horas)', icon: '😴' }
+        ];
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar si hay datos en la URL para cargar
-            loadDataFromURL();
-            renderCalendarView();
-            
-            if (document.getElementById('tracker-diario').classList.contains('active')) {
-                initTracker();
-            }
-        });
-
-        function showSection(id, el) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // Show selected section
-            document.getElementById(id).classList.add('active');
-
-            // Add active class to clicked tab
-            if (el) {
-                el.classList.add('active');
-            }
-
-            // Initialize tracker if needed
-            if (id === 'tracker-diario') {
-                setTimeout(initTracker, 100);
-            }
-
-            if (id === 'calendario') {
-                setTimeout(renderCalendarView, 100);
-            }
-            
-            // Load review if needed
-            if (id === 'revision') {
-                setTimeout(loadWeeklyReview, 100);
-            }
-        }
-
-        function initTracker() {
-            setTodayDate();
+        window.addEventListener('DOMContentLoaded', function() {
             renderChecklist();
             renderSchedule();
-            loadProgress();
-            renderWeekHistory();
-        }
-
-        function renderWeekHistory() {
-            const history = getWeekHistory();
-            const container = document.getElementById('weekHistoryContainer');
-            if (!container) return;
-
-            container.innerHTML = `
-                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px;">
-                    ${history.map(day => {
-                        const hasData = day.data !== null;
-                        const exercise = hasData && day.data.exercise;
-                        const sleep = hasData && day.data.sleep;
-                        const pomodoros = hasData ? day.data.pomodoros : 0;
-                        const isComplete = exercise && sleep && pomodoros >= 10;
-                        
-                        return `
-                            <div style="
-                                background: ${isComplete ? '#d4edda' : (hasData ? '#fff3cd' : '#f5f5f7')};
-                                border: 1px solid ${isComplete ? '#c3e6cb' : (hasData ? '#ffeaa7' : '#e5e5e7')};
-                                border-radius: 8px;
-                                padding: 10px 5px;
-                                text-align: center;
-                                font-size: 11px;
-                            ">
-                                <div style="font-weight: 600; margin-bottom: 5px;">${day.dayName}</div>
-                                <div style="font-size: 10px; color: #999; margin-bottom: 5px;">${day.date.split('-')[2]}</div>
-                                <div style="font-size: 16px;">
-                                    ${exercise ? '💪' : '⚪'}
-                                    ${sleep ? '😴' : '⚪'}
-                                </div>
-                                <div style="font-size: 10px; margin-top: 3px; color: #666;">
-                                    ${pomodoros > 0 ? `${pomodoros}🔥` : '-'}
-                                </div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <div style="margin-top: 15px; padding: 12px; background: #f5f5f7; border-radius: 8px; font-size: 12px; color: #666;">
-                    <strong>Leyenda:</strong> 💪 Ejercicio • 😴 Sueño • 🔥 Pomodoros completados
-                </div>
-            `;
-        }
-
-        function getCurrentWeekDates() {
-            const today = new Date();
-            const day = today.getDay() === 0 ? 7 : today.getDay();
-            const monday = new Date(today);
-            monday.setHours(0, 0, 0, 0);
-            monday.setDate(today.getDate() - (day - 1));
-
-            const days = [];
-            for (let i = 0; i < 7; i++) {
-                const d = new Date(monday);
-                d.setDate(monday.getDate() + i);
-                days.push(d);
-            }
-            return days;
-        }
-
-        function buildDayPlan(date) {
-            const day = date.getDay();
-            const isWeekend = day === 0 || day === 6;
-            const isExerciseDay = day === 1 || day === 3 || day === 5;
-
-            if (isWeekend) {
-                return {
-                    isWeekend: true,
-                    isExerciseDay: false,
-                    plan: [
-                        { icon: '☀️', text: 'Mañana relajada + café' },
-                        { icon: '🎯', text: day === 0 ? 'Planifica la semana + revisión' : 'Hobbies / descanso activo' },
-                        { icon: '🏃', text: 'Movimiento ligero o paseo' },
-                        { icon: '😴', text: 'Dormir 7-8h (21:30)' }
-                    ]
-                };
-            }
-
-            return {
-                isWeekend: false,
-                isExerciseDay: isExerciseDay,
-                plan: [
-                    { icon: '🌅', text: '07:15 Rutina matinal (20 min)' },
-                    { icon: '💼', text: 'Pomodoros meta 12 (09:00-18:30)' },
-                    { icon: isExerciseDay ? '🏋️' : '🚶', text: isExerciseDay ? '18:30 Ejercicio 40 min' : 'Paseo / estiramientos' },
-                    { icon: '😴', text: '21:30 Dormir 7-8h' }
-                ]
-            };
-        }
-
-        function renderCalendarView() {
-            const container = document.getElementById('calendarContainer');
-            const rangeEl = document.getElementById('calendarWeekRange');
-            if (!container || !rangeEl) return;
-
-            const weekDates = getCurrentWeekDates();
-            const weekStart = weekDates[0];
-            const weekEnd = weekDates[6];
-
-            rangeEl.textContent = `${weekStart.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })} - ${weekEnd.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}`;
-
-            const todayKey = getTodayKey();
-            const todayMidnight = new Date(todayKey);
-            todayMidnight.setHours(0, 0, 0, 0);
-
-            container.innerHTML = weekDates.map(date => {
-                const key = date.toISOString().split('T')[0];
-                const stored = localStorage.getItem(`progress_${key}`);
-                const progress = stored ? JSON.parse(stored) : null;
-                const pomodoros = progress?.pomodoros || 0;
-                const exerciseDone = progress ? !!progress.exercise : false;
-                const sleepDone = progress ? !!progress.sleep : false;
-                const isToday = key === todayKey;
-                const isFuture = date > todayMidnight;
-                const planData = buildDayPlan(date);
-
-                const exerciseStatus = planData.isExerciseDay
-                    ? (exerciseDone ? '✅' : (isFuture ? 'Meta' : '❌'))
-                    : (exerciseDone ? '✅' : (planData.isWeekend ? 'Desc' : '—'));
-
-                const sleepStatus = sleepDone ? '✅' : (isFuture ? 'Meta' : '❌');
-                const pomStatus = pomodoros > 0 ? `${pomodoros}/12` : (isFuture ? 'Meta 12' : '0/12');
-
-                return `
-                    <div class="calendar-card ${isToday ? 'today' : ''}">
-                        <h4>${date.toLocaleDateString('es-ES', { weekday: 'long' }).toUpperCase()} <span class="calendar-tag">${date.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}${isToday ? ' • HOY' : ''}</span></h4>
-                        <div class="calendar-status">
-                            <div>💪 ${exerciseStatus}</div>
-                            <div>⚡ ${pomStatus}</div>
-                            <div>😴 ${sleepStatus}</div>
-                        </div>
-                        ${planData.plan.map(item => `<div class="calendar-plan-item"><span>${item.icon}</span><span>${item.text}</span></div>`).join('')}
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function setTodayDate() {
-            const today = new Date();
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('todayDateDisplay').textContent = today.toLocaleDateString('es-ES', options);
-        }
+            renderDiet();
+            loadTodayProgress();
+            renderWeeklyTable();
+        });
 
         function renderChecklist() {
-            const today = new Date();
-            const dayOfWeek = today.getDay(); // 0=DOM, 1=LUN, 2=MAR, 3=MIÉ, 4=JUE, 5=VIE, 6=SAB
-            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-            let dailyChecklist = [];
-
-            if (isWeekend) {
-                // SÁBADO Y DOMINGO
-                const isDomingo = dayOfWeek === 0;
-                dailyChecklist = [
-                    { id: 'water', text: 'Agua + Luz natural', emoji: '💧', time: '07:15' },
-                    { id: 'breakfast', text: 'Desayuno relajado', emoji: '🥣', time: '08:00' },
-                    { id: 'hobby', text: 'Tiempo personal (hobbies)', emoji: '🎯', time: '08:30' },
-                    { id: 'meal', text: 'Comida completa', emoji: '🍽️', time: '12:00' },
-                    { id: 'exercise', text: 'Ejercicio (opcional)', emoji: '🏋️', time: '17:00' },
-                    isDomingo ? 
-                        { id: 'planning', text: '📋 REVISIÓN SEMANAL (15 min)', emoji: '✅', time: '17:00' } :
-                        { id: 'relax', text: 'Actividad de disfrute', emoji: '🎬', time: '15:00' },
-                    { id: 'social', text: 'Tiempo con familia/amigos', emoji: '👥', time: '18:30' },
-                    { id: 'dinner', text: 'Cena', emoji: '🍽️', time: '20:00' },
-                    { id: 'sleep', text: 'Dormir', emoji: '😴', time: '21:30' }
-                ];
-            } else {
-                // LUNES A VIERNES - SIEMPRE MOSTRAR EJERCICIO
-                dailyChecklist = [
-                    { id: 'water', text: 'Agua con limón', emoji: '💧', time: '07:15' },
-                    { id: 'blinkist', text: 'Blinkist lectura', emoji: '📖', time: '07:20' },
-                    { id: 'breakfast', text: 'Desayuno completo', emoji: '🥣', time: '07:30' },
-                    { id: 'work', text: 'Trabajo con Pomodoros', emoji: '💼', time: '09:00' },
-                    { id: 'exercise', text: 'Ejercicio 40 min (si aplica)', emoji: '🏋️', time: '18:30' },
-                    { id: 'dinner', text: 'Cena ligera', emoji: '🍽️', time: '19:30' },
-                    { id: 'stretch', text: 'Estiramiento hombros', emoji: '🧘', time: '21:15' },
-                    { id: 'sleep', text: 'Dormir', emoji: '😴', time: '21:30' }
-                ];
-            }
-
             const container = document.getElementById('checklistContainer');
-            if (!container) return;
-
             container.innerHTML = dailyChecklist.map(item => `
                 <div class="checklist-item" id="item-${item.id}">
-                    <input type="checkbox" id="check-${item.id}" onchange="toggleChecklistItem('${item.id}')">
-                    <div style="flex: 1;">
-                        <label for="check-${item.id}" class="checklist-label">${item.emoji} ${item.text}</label>
-                        <div style="color: #999; font-size: 0.8rem;">${item.time}</div>
-                    </div>
+                    <input type="checkbox" id="check-${item.id}" onchange="updateMetrics()">
+                    <label class="checklist-label" for="check-${item.id}">${item.emoji} ${item.text}</label>
                 </div>
             `).join('');
-
-            applyChecklistState();
-        }
-
-        function getChecklistState() {
-            const saved = localStorage.getItem(`checklist_${getTodayKey()}`);
-            return saved ? JSON.parse(saved) : {};
-        }
-
-        function saveChecklistState(state) {
-            localStorage.setItem(`checklist_${getTodayKey()}`, JSON.stringify(state));
-        }
-
-        function updateChecklistItemUI(id, checked) {
-            const item = document.getElementById(`item-${id}`);
-            if (!item) return;
-            item.style.background = checked ? '#d4edda' : 'white';
-        }
-
-        function applyChecklistState() {
-            const state = getChecklistState();
-            const inputs = document.querySelectorAll('#checklistContainer input[type="checkbox"]');
-            inputs.forEach(input => {
-                const id = input.id.replace('check-', '');
-                const checked = !!state[id];
-                input.checked = checked;
-                updateChecklistItemUI(id, checked);
-            });
         }
 
         function renderSchedule() {
-            const today = new Date();
-            const dayOfWeek = today.getDay(); // 0=DOM, 1=LUN, 2=MAR, 3=MIÉ, 4=JUE, 5=VIE, 6=SAB
-            const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-
-            let schedule = [];
-
-            if (isWeekend) {
-                // SÁBADO Y DOMINGO
-                const dayName = dayOfWeek === 6 ? 'SÁBADO' : 'DOMINGO';
-                const isDomingo = dayOfWeek === 0;
-
-                schedule = [
-                    { time: '07:15-08:00', task: 'Rutina mañana relajada (agua, luz, café)', icon: '☀️' },
-                    { time: '08:00-12:00', task: 'Tiempo libre • Hobbies • Leer • Películas', icon: '🎬' },
-                    { time: '12:00-13:30', task: 'Comida con calma', icon: '🍽️' },
-                    { time: '13:30-17:00', task: isDomingo ? '📋 PLANIFICACIÓN SEMANAL' : '🎯 Planes personales', icon: isDomingo ? '📋' : '🎯' },
-                    { time: '17:00-18:30', task: isDomingo ? 'Revisión semanal (15 min) + Relax' : 'Ejercicio O Viaje O Descanso', icon: isDomingo ? '✅' : '🏃' },
-                    { time: '18:30-20:00', task: 'Cena • Social • Familia', icon: '👥' },
-                    { time: '20:00-21:30', task: 'Entretenimiento • Series • Lectura', icon: '📚' },
-                    { time: '21:30', task: 'Duermes', icon: '😴' }
-                ];
-            } else {
-                // LUNES A VIERNES
-                const dayName = ['', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES'][dayOfWeek];
-                const isExerciseDay = dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 5; // LUN, MIÉ, VIE
-
-                schedule = [
-                    { time: '07:15-07:20', task: 'Agua + Luz solar', icon: '💧' },
-                    { time: '07:20-07:30', task: 'Blinkist + Desayuno', icon: '📖' },
-                    { time: '09:00-18:30', task: 'Trabajo con Pomodoros (meta: 12+)', icon: '💼' },
-                    { time: '18:30-19:15', task: isExerciseDay ? 'Ejercicio 40 min' : 'Relax • Paseo', icon: isExerciseDay ? '🏋️' : '🚶' },
-                    { time: '19:15-20:00', task: 'Cena', icon: '🍽️' },
-                    { time: '21:00-21:30', task: 'Rutina nocturna', icon: '🌙' },
-                    { time: '21:30', task: 'Duermes (objetivo)', icon: '😴' }
-                ];
-            }
-
             const container = document.getElementById('scheduleContainer');
-            if (!container) return;
-
             container.innerHTML = schedule.map(item => `
                 <div class="time-block">
-                    <strong>${item.icon} ${item.time}</strong>
-                    <em>${item.task}</em>
+                    <div class="time-icon">${item.icon}</div>
+                    <div class="time-content">
+                        <div class="time-label">${item.time}</div>
+                        <div class="time-desc">${item.task}</div>
+                    </div>
                 </div>
             `).join('');
         }
 
-        function toggleChecklistItem(id) {
-            const checkbox = document.getElementById(`check-${id}`);
-            if (!checkbox) return;
-
-            const state = getChecklistState();
-            state[id] = checkbox.checked;
-            saveChecklistState(state);
-            updateChecklistItemUI(id, checkbox.checked);
-            autoSaveProgress();
-        }
-
-        function updatePomodoros() {
-            const count = parseInt(localStorage.getItem(`pomodoros_${getTodayKey()}`) || 0);
-            document.getElementById('pomodoroDisplay').textContent = count;
-            document.getElementById('pomodoroProgress').textContent = `${count}/12`;
-            updateProgressBars();
-            autoSaveProgress();
-        }
-
-        function incrementPomodoro() {
-            const today = getTodayKey();
-            const current = parseInt(localStorage.getItem(`pomodoros_${today}`) || 0);
-            const newValue = Math.min(current + 1, 20);
-            localStorage.setItem(`pomodoros_${today}`, newValue);
-            updatePomodoros();
-        }
-
-        function decrementPomodoro() {
-            const today = getTodayKey();
-            const current = parseInt(localStorage.getItem(`pomodoros_${today}`) || 0);
-            const newValue = Math.max(current - 1, 0);
-            localStorage.setItem(`pomodoros_${today}`, newValue);
-            updatePomodoros();
-        }
-
-        function toggleMetric(metric) {
-            const today = getTodayKey();
-            const key = `${metric}_${today}`;
-            const current = localStorage.getItem(key) === 'true';
-            localStorage.setItem(key, !current);
-            updateMetricDisplay(metric);
-            updateProgressBars();
-            autoSaveProgress();
-        }
-
-        function updateMetricDisplay(metric) {
-            const today = getTodayKey();
-            const value = localStorage.getItem(`${metric}_${today}`) === 'true';
-            
-            if (metric === 'exercise') {
-                document.getElementById('exerciseDisplay').textContent = value ? '✅' : '❌';
-                document.getElementById('exerciseCard').style.background = value ? '#d4edda' : '#f5f5f7';
-            } else if (metric === 'sleep') {
-                document.getElementById('sleepDisplay').textContent = value ? '✅' : '❌';
-                document.getElementById('sleepCard').style.background = value ? '#d4edda' : '#f5f5f7';
-            }
-        }
-
-        function updateProgressBars() {
-            const today = getTodayKey();
-            const exercise = localStorage.getItem(`exercise_${today}`) === 'true';
-            const sleep = localStorage.getItem(`sleep_${today}`) === 'true';
-            const pomodoros = parseInt(localStorage.getItem(`pomodoros_${today}`) || 0);
-
-            // Barra pomodoros
-            const pomodoroPercent = Math.min((pomodoros / 12) * 100, 100);
-            document.getElementById('pomodoroBar').style.width = pomodoroPercent + '%';
-
-            // Barra ejercicio
-            document.getElementById('exerciseBar').style.width = exercise ? '100%' : '0%';
-
-            // Barra sueño
-            document.getElementById('sleepBar').style.width = sleep ? '100%' : '0%';
-        }
-
-        function getTodayKey() {
-            const today = new Date();
-            return today.toISOString().split('T')[0]; // YYYY-MM-DD
-        }
-
-        function autoSaveProgress() {
-            // Auto-guarda sin mostrar alerta
-            const today = getTodayKey();
-            const exercise = localStorage.getItem(`exercise_${today}`) === 'true';
-            const sleep = localStorage.getItem(`sleep_${today}`) === 'true';
-            const pomodoros = parseInt(localStorage.getItem(`pomodoros_${today}`) || 0);
-            const checklist = getChecklistState();
-            const checklistCompleted = Object.values(checklist).filter(Boolean).length;
-            const checklistTotal = document.querySelectorAll('#checklistContainer input[type="checkbox"]').length;
-            
-            const data = {
-                date: today,
-                exercise: exercise,
-                pomodoros: pomodoros,
-                sleep: sleep,
-                checklist: checklist,
-                checklistCompleted: checklistCompleted,
-                checklistTotal: checklistTotal,
-                timestamp: new Date().toISOString()
-            };
-            
-            // Guarda datos consolidados
-            localStorage.setItem(`progress_${today}`, JSON.stringify(data));
-            localStorage.setItem('lastViewedDate', today);
-            renderCalendarView();
-        }
-
-        function saveProgress() {
-            autoSaveProgress();
-            // Muestra feedback visual
-            const btn = event.target;
-            const originalText = btn.textContent;
-            btn.textContent = '✅ ¡Guardado!';
-            setTimeout(() => {
-                btn.textContent = originalText;
-            }, 2000);
-        }
-
-        function loadProgress() {
-            const today = getTodayKey();
-            
-            // Cargar pomodoros
-            const pomodoros = parseInt(localStorage.getItem(`pomodoros_${today}`) || 0);
-            document.getElementById('pomodoroDisplay').textContent = pomodoros;
-            document.getElementById('pomodoroProgress').textContent = `${pomodoros}/12`;
-
-            // Cargar métricas
-            updateMetricDisplay('exercise');
-            updateMetricDisplay('sleep');
-            updateProgressBars();
-            applyChecklistState();
-        }
-
-        function getWeekHistory() {
-            // Devuelve histórico de últimos 7 días
-            const history = [];
-            for (let i = 6; i >= 0; i--) {
-                const date = new Date();
-                date.setDate(date.getDate() - i);
-                const key = date.toISOString().split('T')[0];
-                const data = localStorage.getItem(`progress_${key}`);
-                history.push({
-                    date: key,
-                    dayName: date.toLocaleDateString('es-ES', { weekday: 'short' }),
-                    data: data ? JSON.parse(data) : null
-                });
-            }
-            return history;
-        }
-
-        // =========== REVISIÓN SEMANAL ===========
-
-        function getWeekNumber() {
-            return getWeekNumberFromDate(new Date());
-        }
-
-        function getWeekNumberFromDate(date) {
-            const start = new Date(date.getFullYear(), 0, 1);
-            const diff = date - start;
-            const oneWeek = 1000 * 60 * 60 * 24 * 7;
-            return Math.floor(diff / oneWeek);
-        }
-
-        function getWeekDateRange() {
-            const now = new Date();
-            const first = now.getDate() - now.getDay() + 1; // Lunes
-            const mondayDate = new Date(now.setDate(first));
-            const sundayDate = new Date(now.setDate(first + 6));
-            
-            const mondayStr = mondayDate.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
-            const sundayStr = sundayDate.toLocaleDateString('es-ES', { day: '2-digit', month: 'short' });
-            
-            return `${mondayStr} - ${sundayStr}`;
-        }
-
-        function getWeekKey() {
-            return getWeekKeyFromDate(new Date());
-        }
-
-        function getWeekKeyFromDate(date) {
-            const week = getWeekNumberFromDate(date);
-            const year = date.getFullYear();
-            return `week_${year}_${week}`;
-        }
-
-        function saveWeeklyReview() {
-            const weekKey = getWeekKey();
-            const review = {
-                date: new Date().toISOString(),
-                exercise: document.querySelector('input[name="exercise"]:checked')?.value || '',
-                pomodoros: document.querySelector('input[name="pomodoros"]:checked')?.value || '',
-                sleep: document.querySelector('input[name="sleep"]:checked')?.value || '',
-                notes: document.getElementById('weekNotes').value
-            };
-            
-            localStorage.setItem(`review_${weekKey}`, JSON.stringify(review));
-            showNotification('✅ Revisión guardada!');
-            renderReviewHistory();
-        }
-
-        // =========== GOOGLE CALENDAR INTEGRATION ===========
-
-        function addToGoogleCalendar(type) {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const day = String(today.getDate()).padStart(2, '0');
-            const dateStr = `${year}${month}${day}`;
-            const nextDay = new Date(today);
-            nextDay.setDate(today.getDate() + 1);
-            const nextYear = nextDay.getFullYear();
-            const nextMonth = String(nextDay.getMonth() + 1).padStart(2, '0');
-            const nextDayStr = String(nextDay.getDate()).padStart(2, '0');
-            const nextDateStr = `${nextYear}${nextMonth}${nextDayStr}`;
-
-            let event = {};
-            let endDateStr = dateStr;
-
-            if (type === 'exercise') {
-                const isMarked = document.getElementById('exerciseDisplay').textContent === '✅';
-                if (!isMarked) {
-                    alert('⚠️ Marca primero el ejercicio como completado.');
-                    return;
-                }
-                event = {
-                    title: 'Ejercicio 40 min',
-                    startTime: '183000', // 18:30
-                    endTime: '191500',   // 19:15
-                    description: 'Calentamiento 5 min → Ejercicio 30 min → Estiramiento 5 min'
-                };
-            } else if (type === 'sleep') {
-                const isMarked = document.getElementById('sleepDisplay').textContent === '✅';
-                if (!isMarked) {
-                    alert('⚠️ Marca primero el sueño como completado.');
-                    return;
-                }
-                event = {
-                    title: 'Dormir 7-8 horas',
-                    startTime: '213000', // 21:30
-                    endTime: '071500',   // 07:15 día siguiente
-                    description: 'Rutina nocturna completada. Objetivo: 7-8 horas de sueño.'
-                };
-                endDateStr = nextDateStr;
-            } else if (type === 'pomodoro') {
-                const pomCount = parseInt(document.getElementById('pomodoroDisplay').textContent) || 0;
-                if (pomCount === 0) {
-                    alert('⚠️ Suma pomodoros antes de crear el evento.');
-                    return;
-                }
-                event = {
-                    title: `Pomodoros: ${pomCount}/12 completados`,
-                    startTime: '090000', // 09:00
-                    endTime: '183000',   // 18:30
-                    description: `Sesiones completadas: ${pomCount} de 12 pomodoros de 15 min. Trabajo enfocado.`
-                };
-            } else if (type === 'routine') {
-                event = {
-                    title: 'Rutina Matinal 20 min',
-                    startTime: '071500', // 07:15
-                    endTime: '073500',   // 07:35
-                    description: 'Agua + Limón (5 min) → Blinkist (10 min) → Desayuno (5 min)'
-                };
-            }
-
-            if (!event.title) return;
-
-            // Construir URL de Google Calendar
-            const calendarUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${encodeURIComponent(event.title)}&dates=${dateStr}T${event.startTime}/${endDateStr}T${event.endTime}&details=${encodeURIComponent(event.description)}`;
-
-            // Abrir en nueva ventana
-            window.open(calendarUrl, '_blank');
-            showNotification(`📅 Abriendo Google Calendar para "${event.title}"`);
-        }
-
-
-        function loadWeeklyReview() {
-            const weekKey = getWeekKey();
-            const saved = localStorage.getItem(`review_${weekKey}`);
-            
-            if (saved) {
-                const review = JSON.parse(saved);
-                
-                // Cargar respuestas sin disparar eventos
-                if (review.exercise) {
-                    const el = document.getElementById(`ex-${review.exercise}`);
-                    if (el) el.checked = true;
-                }
-                if (review.pomodoros) {
-                    const el = document.getElementById(`pom-${review.pomodoros}`);
-                    if (el) el.checked = true;
-                }
-                if (review.sleep) {
-                    const el = document.getElementById(`sleep-${review.sleep}`);
-                    if (el) el.checked = true;
-                }
-                
-                // Cargar notas
-                if (review.notes) {
-                    document.getElementById('weekNotes').value = review.notes;
-                }
-            }
-            
-            // Mostrar rango de semana
-            document.getElementById('weekRangeDisplay').textContent = getWeekDateRange();
-            renderReviewHistory();
-        }
-
-        function renderReviewHistory() {
-            const container = document.getElementById('reviewHistoryContainer');
-            if (!container) return;
-
-            // Obtener últimas 4 semanas usando la misma llave de semana
-            const reviews = [];
-            for (let i = 0; i < 4; i++) {
-                const date = new Date();
-                date.setDate(date.getDate() - (i * 7));
-                const key = getWeekKeyFromDate(date);
-                const saved = localStorage.getItem(`review_${key}`);
-                
-                if (saved) {
-                    const review = JSON.parse(saved);
-                    reviews.push({
-                        date: new Date(review.date).toLocaleDateString('es-ES'),
-                        exercise: review.exercise,
-                        pomodoros: review.pomodoros,
-                        sleep: review.sleep,
-                        notes: review.notes
-                    });
-                }
-            }
-
-            if (reviews.length === 0) {
-                container.innerHTML = '<p style="color: #999; text-align: center;">Aún no hay revisiones guardadas.</p>';
-                return;
-            }
-
-            const getEmoji = (value) => {
-                if (value === 'si') return '✅';
-                if (value === 'casi' || value === 'parcial') return '⚠️';
-                if (value === 'no') return '❌';
-                return '•';
-            };
-
-            container.innerHTML = `
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    ${reviews.map((review, idx) => `
-                        <div style="background: #f5f5f7; border-radius: 8px; padding: 12px; border-left: 4px solid #1d1d1d;">
-                            <div style="font-weight: 600; margin-bottom: 8px; font-size: 13px;">${review.date}</div>
-                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px;">
-                                <div style="text-align: center;">
-                                    <div style="font-size: 20px;">${getEmoji(review.exercise)}</div>
-                                    <div style="font-size: 11px; color: #666;">Ejercicio</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 20px;">${getEmoji(review.pomodoros)}</div>
-                                    <div style="font-size: 11px; color: #666;">Pomodoros</div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <div style="font-size: 20px;">${getEmoji(review.sleep)}</div>
-                                    <div style="font-size: 11px; color: #666;">Sueño</div>
-                                </div>
-                            </div>
-                            ${review.notes ? `<div style="font-size: 12px; color: #555; font-style: italic;">"${review.notes}"</div>` : ''}
+        function renderDiet() {
+            const container = document.getElementById('dietContainer');
+            container.innerHTML = Object.entries(dietPlan).map(([day, meals]) => `
+                <div class="diet-day">
+                    <h3>${day}</h3>
+                    ${Object.entries(meals).map(([mealType, content]) => `
+                        <div class="meal">
+                            <div class="meal-title">🍽️ ${mealType}</div>
+                            <div class="meal-content">${content}</div>
                         </div>
                     `).join('')}
                 </div>
-            `;
+            `).join('');
         }
 
-        // Evento al cambiar de sección para recargar tracker
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('nav-tab')) {
-                setTimeout(() => {
-                    if (e.target.textContent.includes('Hoy')) {
-                        initTracker();
-                    }
-                }, 100);
-            }
-        });
-
-        // =========== SINCRONIZACIÓN EN NUBE (URL) ===========
-
-        function compressData(obj) {
-            // Comprime datos a Base64
-            const json = JSON.stringify(obj);
-            return btoa(unescape(encodeURIComponent(json)));
-        }
-
-        function decompressData(encoded) {
-            // Descomprime desde Base64
-            try {
-                const json = decodeURIComponent(escape(atob(encoded)));
-                return JSON.parse(json);
-            } catch (e) {
-                console.error('Error decompressing data:', e);
-                return null;
-            }
-        }
-
-        function getAllData() {
-            // Extrae TODOS los datos del localStorage
-            const data = {};
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-                data[key] = localStorage.getItem(key);
-            }
-            return data;
-        }
-
-        function createShareLink() {
-            // Crea un link compartible con todos los datos
-            const allData = getAllData();
-            const compressed = compressData(allData);
-            const baseURL = window.location.origin + window.location.pathname;
-            const shareLink = baseURL + '?data=' + compressed;
-            
-            // Copia al clipboard
-            navigator.clipboard.writeText(shareLink).then(() => {
-                // Muestra notificación
-                showNotification('✅ Link copiado. Comparte con otros dispositivos o guarda.');
-            }).catch(() => {
-                // Si falla clipboard, muestra el link
-                alert('Link de compartir:\n\n' + shareLink);
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
             });
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
         }
 
-        function loadDataFromURL() {
-            // Carga datos si vienen en la URL
-            const params = new URLSearchParams(window.location.search);
-            const compressedData = params.get('data');
-            
-            if (compressedData) {
-                const decompressed = decompressData(compressedData);
-                if (decompressed) {
-                    // Carga TODOS los datos en localStorage
-                    Object.keys(decompressed).forEach(key => {
-                        localStorage.setItem(key, decompressed[key]);
-                    });
-                    
-                    // Limpia la URL (quita el ?data=...)
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                    
-                    showNotification('📥 Datos importados correctamente!');
-                    location.reload();
-                }
+        function toggleMetric(metric) {
+            const toggle = document.getElementById(metric + 'Toggle');
+            const card = document.getElementById(metric + 'Card');
+
+            if (toggle.textContent === '❌') {
+                toggle.textContent = '✅';
+                card.classList.remove('pending');
+                card.classList.add('completed');
+            } else {
+                toggle.textContent = '❌';
+                card.classList.remove('completed');
+                card.classList.add('pending');
+            }
+            updateMetrics();
+        }
+
+        function updateMetrics() {
+            const exercise = document.getElementById('exerciseToggle').textContent === '✅';
+            const lecture = document.getElementById('lectureToggle').textContent === '✅';
+            const food = document.getElementById('foodToggle').textContent === '✅';
+            const sleep = document.getElementById('sleepToggle').textContent === '✅';
+
+            document.getElementById('exerciseStatusSummary').textContent = exercise ? '✅' : '⏳';
+            document.getElementById('lectureStatusSummary').textContent = lecture ? '✅' : '⏳';
+            document.getElementById('foodStatusSummary').textContent = food ? '✅' : '⏳';
+            document.getElementById('sleepStatusSummary').textContent = sleep ? '✅' : '⏳';
+        }
+
+        function getTodayKey() {
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function saveTodayProgress() {
+            const today = getTodayKey();
+            const data = {
+                date: today,
+                exercise: document.getElementById('exerciseToggle').textContent === '✅',
+                lecture: document.getElementById('lectureToggle').textContent === '✅',
+                food: document.getElementById('foodToggle').textContent === '✅',
+                sleep: document.getElementById('sleepToggle').textContent === '✅',
+                checklist: {}
+            };
+
+            dailyChecklist.forEach(item => {
+                data.checklist[item.id] = document.getElementById(`check-${item.id}`).checked;
+            });
+
+            let weeklyData = JSON.parse(localStorage.getItem('weeklyData') || '{}');
+            weeklyData[today] = data;
+            localStorage.setItem('weeklyData', JSON.stringify(weeklyData));
+
+            alert('✅ Progreso guardado correctamente');
+            renderWeeklyTable();
+        }
+
+        function loadTodayProgress() {
+            const today = getTodayKey();
+            const weeklyData = JSON.parse(localStorage.getItem('weeklyData') || '{}');
+            const todayData = weeklyData[today];
+
+            if (todayData) {
+                if (todayData.exercise) toggleMetric('exercise');
+                if (todayData.lecture) toggleMetric('lecture');
+                if (todayData.food) toggleMetric('food');
+                if (todayData.sleep) toggleMetric('sleep');
+
+                Object.entries(todayData.checklist).forEach(([id, checked]) => {
+                    if (checked) {
+                        document.getElementById(`check-${id}`).checked = true;
+                        document.getElementById(`item-${id}`).classList.add('done');
+                    }
+                });
             }
         }
 
-        function downloadBackup() {
-            // Descarga un archivo JSON de backup
-            const allData = getAllData();
-            const json = JSON.stringify(allData, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `sistema-sergio-backup-${new Date().toISOString().split('T')[0]}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showNotification('📥 Backup descargado!');
+        function resetDay() {
+            if (confirm('¿Limpiar todos los datos de hoy?')) {
+                document.querySelectorAll('.metric-status').forEach(el => {
+                    el.textContent = '❌';
+                });
+                document.querySelectorAll('.metric-card').forEach(card => {
+                    card.classList.remove('completed');
+                    card.classList.add('pending');
+                });
+                document.querySelectorAll('#checklistContainer input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
+                });
+                document.querySelectorAll('.checklist-item').forEach(item => {
+                    item.classList.remove('done');
+                });
+                updateMetrics();
+            }
         }
 
-        function uploadBackup() {
-            // Permite importar un archivo JSON de backup
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = function(e) {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        Object.keys(data).forEach(key => {
-                            localStorage.setItem(key, data[key]);
-                        });
-                        showNotification('✅ Backup restaurado!');
-                        location.reload();
-                    } catch (error) {
-                        alert('Error al cargar el archivo. Verifica que sea un JSON válido.');
-                    }
-                };
-                reader.readAsText(file);
-            };
-            input.click();
-        }
+        function renderWeeklyTable() {
+            const tbody = document.getElementById('weeklyTableBody');
+            const weeklyData = JSON.parse(localStorage.getItem('weeklyData') || '{}');
 
-        function showNotification(message) {
-            // Muestra notificación temporal
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.className = 'notification';
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+            let html = '';
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toLocaleDateString('es-ES');
+                const dayName = date.toLocaleDateString('es-ES', { weekday: 'short' }).toUpperCase();
+
+                const data = weeklyData[dateStr];
+                const exercise = data?.exercise ? '✅' : '❌';
+                const lecture = data?.lecture ? '✅' : '❌';
+                const food = data?.food ? '✅' : '❌';
+                const sleep = data?.sleep ? '✅' : '❌';
+                const allDone = (data?.exercise && data?.lecture && data?.food && data?.sleep) ? '✅' : '⏳';
+
+                html += `
+                    <tr style="border-bottom: 1px solid var(--border);">
+                        <td style="padding: 10px;">${dayName} ${dateStr}</td>
+                        <td style="padding: 10px; text-align: center; font-size: 1.1rem;">${exercise}</td>
+                        <td style="padding: 10px; text-align: center; font-size: 1.1rem;">${lecture}</td>
+                        <td style="padding: 10px; text-align: center; font-size: 1.1rem;">${food}</td>
+                        <td style="padding: 10px; text-align: center; font-size: 1.1rem;">${sleep}</td>
+                        <td style="padding: 10px; text-align: center; font-size: 1.1rem;">${allDone}</td>
+                    </tr>
+                `;
+            }
+            tbody.innerHTML = html;
         }
     </script>
 </body>
