@@ -1,0 +1,14 @@
+# Archivos markdown originales
+*.md
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Temporales
+*.tmp
+*.bak

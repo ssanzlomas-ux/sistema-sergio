@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker Diario - Sistema Sergio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .today-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .metrics-today {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .metric-card.completed {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+
+        .metric-card.pending {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+        }
+
+        .metric-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-title {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .metric-status {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .metric-desc {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .schedule {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .schedule h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .time-block {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .time-block.completed {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .time-block.completed .time-icon {
+            color: #28a745;
+        }
+
+        .time-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+            text-align: center;
+            margin-right: 15px;
+            color: #667eea;
+        }
+
+        .time-content {
+            flex: 1;
+        }
+
+        .time-label {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .time-desc {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .time-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #667eea;
+            transition: color 0.2s ease;
+        }
+
+        .time-toggle:hover {
+            color: #764ba2;
+        }
+
+        .checklist {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .checklist h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: #eee;
+        }
+
+        .checklist-item.done {
+            background: #d4edda;
+            border: 2px solid #28a745;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checklist-label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .checklist-item.done .checklist-label {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .summary h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .metrics-today {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .summary-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📍 Tracker Hoy</h1>
+            <div class="today-date" id="todayDate"></div>
+        </header>
+
+        <div class="summary" id="summary">
+            <h3>Progreso Hoy</h3>
+            <div class="summary-stats">
+                <div class="stat">
+                    <div class="stat-value" id="exerciseStatus">⏳</div>
+                    <div class="stat-label">Ejercicio</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="pomodoroStatus">⏳</div>
+                    <div class="stat-label">Pomodoros</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="sleepStatus">⏳</div>
+                    <div class="stat-label">Sueño</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metrics-today">
+            <div class="metric-card pending" id="exerciseCard">
+                <div class="metric-icon">💪</div>
+                <div class="metric-title">Ejercicio</div>
+                <div class="metric-status" id="exerciseToggle" onclick="toggleExercise()">❌</div>
+                <div class="metric-desc">40 min (18:30-19:15)</div>
+            </div>
+
+            <div class="metric-card pending" id="pomodoroCard">
+                <div class="metric-icon">⚡</div>
+                <div class="metric-title">Pomodoros</div>
+                <div class="metric-status" id="pomodoroCount">0/12</div>
+                <div class="metric-desc">
+                    <input type="number" id="pomodoroInput" min="0" max="20" value="0" 
+                           style="width: 50px; padding: 5px; border-radius: 4px; border: 1px solid #ccc;"
+                           onchange="updatePomodoros()">
+                </div>
+            </div>
+
+            <div class="metric-card pending" id="sleepCard">
+                <div class="metric-icon">😴</div>
+                <div class="metric-title">Sueño</div>
+                <div class="metric-status" id="sleepToggle" onclick="toggleSleep()">❌</div>
+                <div class="metric-desc">7-8 horas</div>
+            </div>
+        </div>
+
+        <div class="checklist">
+            <h2>✅ Checklist Hoy</h2>
+            <div id="checklistContainer"></div>
+        </div>
+
+        <div class="schedule">
+            <h2>📅 Horario Hoy</h2>
+            <div id="scheduleContainer"></div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" onclick="saveProgress()">💾 Guardar Progreso</button>
+            <button class="btn btn-secondary" onclick="goHome()">← Volver</button>
+        </div>
+
+        <footer>
+            <p>📍 Tracker Diario | Actualiza en tiempo real</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data
+        const dailyChecklist = [
+            { id: 'water', text: 'Agua con limón al despertar', time: '07:15', emoji: '💧' },
+            { id: 'blinkist', text: 'Blinkist lectura', time: '07:20', emoji: '📖' },
+            { id: 'breakfast', text: 'Desayuno completo', time: '07:30', emoji: '🥣' },
+            { id: 'work', text: 'Trabajo con Pomodoros', time: '09:00', emoji: '💼' },
+            { id: 'exercise', text: 'Ejercicio (si es LUN/MIÉ/VIE)', time: '18:30', emoji: '🏋️' },
+            { id: 'dinner', text: 'Cena ligera', time: '19:30', emoji: '🍽️' },
+            { id: 'stretch', text: 'Estiramiento hombros', time: '21:15', emoji: '🧘' },
+            { id: 'sleep', text: 'Dormir', time: '21:30', emoji: '😴' }
+        ];
+
+        const schedule = [
+            { time: '07:15-07:20', task: 'Agua + Luz solar', icon: '💧' },
+            { time: '07:20-07:30', task: 'Blinkist + Desayuno', icon: '📖' },
+            { time: '09:00-18:30', task: 'Trabajo con Pomodoros (meta: 12+)', icon: '💼' },
+            { time: '18:30-19:15', task: 'Ejercicio (LUN/MIÉ/VIE)', icon: '🏋️' },
+            { time: '21:00-21:30', task: 'Rutina nocturna', icon: '🌙' },
+            { time: '21:30', task: 'Duermes (objetivo)', icon: '😴' }
+        ];
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', function() {
+            setTodayDate();
+            renderChecklist();
+            renderSchedule();
+            loadProgress();
+        });
+
+        function setTodayDate() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('todayDate').textContent = today.toLocaleDateString('es-ES', options);
+        }
+
+        function renderChecklist() {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = dailyChecklist.map(item => `
+                <div class="checklist-item" id="item-${item.id}" onclick="toggleChecklistItem('${item.id}')">
+                    <input type="checkbox" id="check-${item.id}" onchange="toggleChecklistItem('${item.id}')">
+                    <div style="flex: 1;">
+                        <div class="checklist-label">${item.emoji} ${item.text}</div>
+                        <div style="color: #999; font-size: 0.8rem;">${item.time}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderSchedule() {
+            const container = document.getElementById('scheduleContainer');
+            container.innerHTML = schedule.map(item => `
+                <div class="time-block">
+                    <div class="time-icon">${item.icon}</div>
+                    <div class="time-content">
+                        <div class="time-label">${item.time}</div>
+                        <div class="time-desc">${item.task}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleChecklistItem(id) {
+            const item = document.getElementById(`item-${id}`);
+            const checkbox = document.getElementById(`check-${id}`);
+            
+            if (checkbox.checked) {
+                item.classList.add('done');
+            } else {
+                item.classList.remove('done');
+            }
+            updateProgress();
+        }
+
+        function toggleExercise() {
+            const card = document.getElementById('exerciseCard');
+            const toggle = document.getElementById('exerciseToggle');
+            
+            if (toggle.textContent === '❌') {
+                toggle.textContent = '✅';
+                card.classList.remove('pending');
+                card.classList.add('completed');
+            } else {
+                toggle.textContent = '❌';
+                card.classList.remove('completed');
+                card.classList.add('pending');
+            }
+            updateProgress();
+        }
+
+        function toggleSleep() {
+            const card = document.getElementById('sleepCard');
+            const toggle = document.getElementById('sleepToggle');
+            
+            if (toggle.textContent === '❌') {
+                toggle.textContent = '✅';
+                card.classList.remove('pending');
+                card.classList.add('completed');
+            } else {
+                toggle.textContent = '❌';
+                card.classList.remove('completed');
+                card.classList.add('pending');
+            }
+            updateProgress();
+        }
+
+        function updatePomodoros() {
+            const input = document.getElementById('pomodoroInput');
+            const count = document.getElementById('pomodoroCount');
+            const card = document.getElementById('pomodoroCard');
+            const value = parseInt(input.value) || 0;
+            
+            count.textContent = `${value}/12`;
+            
+            if (value >= 10) {
+                card.classList.remove('pending');
+                card.classList.add('completed');
+            } else {
+                card.classList.remove('completed');
+                card.classList.add('pending');
+            }
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const exercise = document.getElementById('exerciseToggle').textContent === '✅';
+            const pomodoro = parseInt(document.getElementById('pomodoroInput').value) >= 10;
+            const sleep = document.getElementById('sleepToggle').textContent === '✅';
+            
+            document.getElementById('exerciseStatus').textContent = exercise ? '✅' : '⏳';
+            document.getElementById('pomodoroStatus').textContent = pomodoro ? '✅' : '⏳';
+            document.getElementById('sleepStatus').textContent = sleep ? '✅' : '⏳';
+        }
+
+        function saveProgress() {
+            const data = {
+                date: new Date().toLocaleDateString('es-ES'),
+                exercise: document.getElementById('exerciseToggle').textContent === '✅',
+                pomodoros: parseInt(document.getElementById('pomodoroInput').value) || 0,
+                sleep: document.getElementById('sleepToggle').textContent === '✅'
+            };
+            
+            localStorage.setItem('todayProgress', JSON.stringify(data));
+            alert('✅ Progreso guardado correctamente');
+        }
+
+        function loadProgress() {
+            const data = localStorage.getItem('todayProgress');
+            if (data) {
+                const progress = JSON.parse(data);
+                if (progress.exercise) document.getElementById('exerciseToggle').click();
+                if (progress.sleep) document.getElementById('sleepToggle').click();
+                document.getElementById('pomodoroInput').value = progress.pomodoros;
+                updatePomodoros();
+            }
+        }
+
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
